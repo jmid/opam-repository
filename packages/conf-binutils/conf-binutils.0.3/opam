@@ -22,7 +22,7 @@ depexts: [
     "x86_64-elf-binutils"
   ] {os = "macos" & os-distribution = "macports"}
 ]
-synopsis: "Checks that binutils are installed"
+synopsis: "Checks that GNU binutils are installed"
 
 depends: [
   "ocaml" {>= "4.08.0"}
