@@ -12,6 +12,7 @@ build: [
 depexts: [
   ["binutils-multiarch"] {os-family = "debian"}
   ["binutils"] {os = "macos" & os-distribution = "homebrew"}
+  ["binutils"] {os = "freebsd"}
   [
     "arm-aout-binutils"
     "arm-elf-binutils"
