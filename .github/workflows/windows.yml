@@ -57,7 +57,9 @@ jobs:
 
       - name: Init opam (MSys2)
         if: steps.cache-opam.outputs.cache-hit != 'true' && matrix.windows_env == 'msys2'
-        run: opam init --yes --no-setup --cygwin-local-install .
+        run: |
+          C:\msys64\usr\bin\pacman.exe -Syu --noconfirm make mingw-w64-x86_64-gcc rsync unzip
+          opam init --yes --no-setup --cygwin-local-install .
 
       - name: Restrict testing to available compilers
         if: steps.cache-opam.outputs.cache-hit != 'true'
