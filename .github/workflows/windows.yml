@@ -118,7 +118,7 @@ jobs:
           Write-Host "opam var output"
           opam var
           Write-Host "ocamlc -config output"
-          ocamlc -config
+          opam exec ocamlc -- -config
           $pkgs = $env:ALL_CHANGED_PACKAGES | ConvertFrom-Json
           $failed = $false
           opam update
