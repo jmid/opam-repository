@@ -115,6 +115,10 @@ jobs:
           ALL_CHANGED_PACKAGES: ${{ steps.changed-packages.outputs.data }}
         if: github.event_name != 'push'
         run: |
+          Write-Host "ocamlc -config output"
+          ocamlc -config
+          Write-Host "opam var output"
+          opam var
           $pkgs = $env:ALL_CHANGED_PACKAGES | ConvertFrom-Json
           $failed = $false
           opam update
