@@ -170,7 +170,7 @@ jobs:
 
       - name: Download opam installer
         run: |
-          msys -c "sh <(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.ps1"
+          msys2 -c "sh <(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.ps1"
 
       - name: Initialize opam
         run: |
