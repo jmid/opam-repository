@@ -173,7 +173,11 @@ jobs:
           curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.ps1 > install.ps1
           powershell -File install.ps1 -OpamBinDir 'D:\opam\bin'
           echo $PATH
+          echo "cat GITHUB_PATH before setting"
+          cat $GITHUB_PATH
           echo "/d/opam/bin" >> "$GITHUB_PATH"
+          echo "cat GITHUB_PATH after setting"
+          cat $GITHUB_PATH
 
       - name: Initialize opam
         run: |
