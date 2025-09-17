@@ -172,12 +172,13 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.ps1 > install.ps1
           powershell -File install.ps1 -OpamBinDir 'D:\opam\bin'
-          echo $GITHUB_PATH
-          echo "/d/opam/bin" >> $GITHUB_PATH
+          echo $PATH
+          echo "D:\opam\bin" >> "$GITHUB_PATH"
 
       - name: Initialize opam
         run: |
-          echo $GITHUB_PATH
+          echo $PATH
+          D:\opam\bin\opam --version
           opam init --yes --no-setup --cygwin-local-install .
           for /f "tokens=*" %i in ('opam env') do @%i
           opam --version
