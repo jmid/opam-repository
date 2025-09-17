@@ -156,14 +156,17 @@ jobs:
           install: >-
             curl
             git
+            m4
+            make
+            mingw-w64-i686-gcc
+            mingw-w64-x86_64-gcc
+            rsync
+            unzip
+
       - name: Checkout tree
         uses: actions/checkout@v5
         with:
           fetch-depth: 2
-
-      - name: Install prerequisites
-        run: |
-          pacman -Syu --noconfirm m4 make mingw-w64-i686-gcc mingw-w64-x86_64-gcc rsync unzip
 
       - name: Download opam installer
         shell: powershell
