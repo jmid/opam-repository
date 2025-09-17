@@ -170,8 +170,7 @@ jobs:
 
       - name: Download opam installer
         run: |
-          [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-          (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ocaml/opam/master/shell/install.ps1", ".\install.ps1")
+          msys -c "sh <(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.ps1"
 
       - name: Initialize opam
         run: |
