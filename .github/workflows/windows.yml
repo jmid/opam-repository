@@ -169,10 +169,9 @@ jobs:
           fetch-depth: 2
 
       - name: Download opam installer
-        shell: powershell
         run: |
-          msys2 -c '[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12'
-          msys2 -c '(New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ocaml/opam/master/shell/install.ps1", ".\install.ps1")'
+          [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+          (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ocaml/opam/master/shell/install.ps1", ".\install.ps1")
 
       - name: Initialize opam
         run: |
