@@ -161,10 +161,18 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Install opam
+      - name: Install prerequisites
         run: |
           pacman -Syu --noconfirm m4 make mingw-w64-i686-gcc mingw-w64-x86_64-gcc rsync unzip
-          winget install Git.Git OCaml.opam
+
+      - name: Download opam installer
+        shell: powershell
+        run: |
+          msys2 -c '[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12'
+          msys2 -c '(New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ocaml/opam/master/shell/install.ps1", ".\install.ps1")'
+
+      - name: Initialize opam
+        run: |
           opam init --yes --no-setup --cygwin-local-install .
           for /f "tokens=*" %i in ('opam env') do @%i
           opam --version
