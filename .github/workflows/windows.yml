@@ -220,6 +220,7 @@ jobs:
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
+          set +e
           failed=false
           opam update
           echo "all files:" $ALL_CHANGED_FILES
