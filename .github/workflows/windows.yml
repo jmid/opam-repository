@@ -213,7 +213,7 @@ jobs:
           echo $ALL_CHANGED_FILES
           for file in ${ALL_CHANGED_FILES}; do
             echo $file;
-            pkg=$(cut -d / -f 3);
+            pkg=$(cut -d '\' -f 3);
             echo "::group::Testing \e[1;34m$pkg\e[0m";
             opam install -v --color=always --confirm-level=unsafe-yes "$pkg";
             exitcode=$?;
