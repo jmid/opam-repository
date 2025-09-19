@@ -209,10 +209,10 @@ jobs:
         run: |
           failed=false
           opam update
-          echo $ALL_CHANGED_FILES
+          echo "all files:" $ALL_CHANGED_FILES
           for file in ${ALL_CHANGED_FILES}; do
-            echo $file;
-            pkg=$(cut -d '\' -f 3);
+            echo "file:" $file;
+            pkg=$(echo $file | cut -d '\' -f 3);
             printf "::group::Testing \e[1;34m$pkg\e[0m";
             opam install -v --color=always --confirm-level=unsafe-yes "$pkg";
             exitcode=$?;
