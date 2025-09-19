@@ -214,7 +214,7 @@ jobs:
             echo "file:" $file;
             pkg=$(echo $file | cut -d '\' -f 3);
             printf "::group::Testing \e[1;34m$pkg\e[0m";
-            opam install -v --color=always --confirm-level=unsafe-yes "$pkg";
+            opam install --color=always --confirm-level=unsafe-yes "$pkg";
             exitcode=$?;
             printf "::endgroup::";
             case "$exitcode" in
