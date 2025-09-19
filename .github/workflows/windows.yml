@@ -203,7 +203,7 @@ jobs:
 
       - name: List all changed packages
         id: changed-packages
-        if: github.event_name != 'push'
+        # if: github.event_name != 'push'  # FIXME
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
