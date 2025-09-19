@@ -208,15 +208,15 @@ jobs:
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-          failed = false
+          failed=false
           opam update
           echo $ALL_CHANGED_FILES
           for file in ${ALL_CHANGED_FILES}; do
             echo $file;
-            pkg = $(cut -d / -f 3);
+            pkg=$(cut -d / -f 3);
             echo "::group::Testing \e[1;34m$pkg\e[0m";
             opam install -v --color=always --confirm-level=unsafe-yes "$pkg";
-            exitcode = $?;
+            exitcode=$?;
             echo "::endgroup::";
             case "$exitcode" in
               0)
@@ -230,7 +230,7 @@ jobs:
                 ;;
               31)
                 echo "\e[1;31m$pkg failed to build\e[0m."
-                failed = true
+                failed=true
                 ;;
               *)
                 echo "Unexpected error $exitcode" && exit 1
