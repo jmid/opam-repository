@@ -198,6 +198,8 @@ jobs:
         id: changed-files
         if: github.event_name != 'push'
         uses: tj-actions/changed-files@v47
+        with:
+          files: packages/*/*
 
       - name: List all changed packages
         id: changed-packages
@@ -205,16 +207,16 @@ jobs:
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-          for file in $env:ALL_CHANGED_FILES; do :;
+          for file in ${ALL_CHANGED_FILES}; do :;
             echo $file;
-            case "$file" in
-              '^packages\\[^\\]*\\([^\\]*)\\.*')
-                echo $file matches
-                ;;
-              *)
-                echo $file skipped
-                ;;
-            esac
+            #case "$file" in
+            #  '^packages\\[^\\]*\\([^\\]*)\\.*')
+            #    echo $file matches
+            #    ;;
+            #  *)
+            #    echo $file skipped
+            #    ;;
+            #esac
           done
 #           $output = @()
 #           Foreach ($file in ($env:ALL_CHANGED_FILES).Split(" ")) {
