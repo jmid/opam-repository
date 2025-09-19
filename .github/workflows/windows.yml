@@ -185,7 +185,8 @@ jobs:
           echo $PATH
           /d/opam/bin/opam --version
           opam init --yes --no-setup --cygwin-local-install .
-          for /f "tokens=*" %i in ('opam env') do @%i
+          # for /f "tokens=*" %i in ('opam env') do @%i
+          eval $(opam env)
           opam --version
           opam exec -- ocaml -version
 
