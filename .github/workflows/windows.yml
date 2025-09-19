@@ -205,8 +205,16 @@ jobs:
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-          for pkg in $env:ALL_CHANGED_FILES; do :;
-            echo $pkg
+          for file in $env:ALL_CHANGED_FILES; do :;
+            echo $file;
+            case "$file" in
+              '^packages\\[^\\]*\\([^\\]*)\\.*')
+                echo $file matches
+                ;;
+              *)
+                echo $file skipped
+                ;;
+            esac
           done
 #           $output = @()
 #           Foreach ($file in ($env:ALL_CHANGED_FILES).Split(" ")) {
