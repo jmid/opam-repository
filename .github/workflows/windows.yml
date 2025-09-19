@@ -192,19 +192,22 @@ jobs:
 
       - name: Restrict testing to available compilers
         # TODO Amend this lowerbound as older compiler packages are updated
-        run: opam switch set-invariant --formula "`"ocaml`" {>= `"4.13`"}"
+        run: opam switch set-invariant --formula "\"ocaml\" {>= \"4.13\"}"
 
       - name: Get changed files
         id: changed-files
         if: github.event_name != 'push'
         uses: tj-actions/changed-files@v47
 
-#       - name: List all changed packages
-#         id: changed-packages
-#         if: github.event_name != 'push'
-#         env:
-#           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
-#         run: |
+      - name: List all changed packages
+        id: changed-packages
+        if: github.event_name != 'push'
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          for pkg in $env:ALL_CHANGED_FILES; do :;
+            echo $pkg
+          done
 #           $output = @()
 #           Foreach ($file in ($env:ALL_CHANGED_FILES).Split(" ")) {
 #             switch -Regex ($file) {
