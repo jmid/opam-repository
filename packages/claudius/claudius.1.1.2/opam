@@ -48,6 +48,7 @@ build: [
 ]
 dev-repo: "git+https://github.com/claudiusFX/claudius.git"
 x-maintenance-intent: ["(latest)"]
+x-ci-accept-failures: [ "debian-11" ]
 url {
     src:
       "https://github.com/claudiusFX/Claudius/archive/refs/tags/v1.1.2.tar.gz"
