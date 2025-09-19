@@ -198,7 +198,7 @@ jobs:
         # if: github.event_name != 'push'  # FIXME
         uses: tj-actions/changed-files@v47
         with:
-          files: packages\*\*\*
+          files: packages\*
 
       - name: Install changed packages
         if: steps.changed-files.outputs.any_changed == 'true'
