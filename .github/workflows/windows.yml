@@ -201,13 +201,17 @@ jobs:
         with:
           files: packages/*/*
 
-      - name: List all changed packages
+      - name: Install changed packages
+        if: steps.changed-files.outputs.any_changed == 'true'
         id: changed-packages
         # if: github.event_name != 'push'  # FIXME
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-          for file in ${ALL_CHANGED_FILES}; do :;
+          failed = false
+          opam update
+          echo $ALL_CHANGED_FILES
+          for file in ${ALL_CHANGED_FILES}; do
             echo $file;
             pkg = $(cut -d / -f 3);
             echo "::group::Testing \e[1;34m$pkg\e[0m";
@@ -226,12 +230,16 @@ jobs:
                 ;;
               31)
                 echo "\e[1;31m$pkg failed to build\e[0m."
+                failed = true
                 ;;
               *)
                 echo "Unexpected error $exitcode" && exit 1
                 ;;
             esac
           done
+          if [ "$failed" = true ] ; then
+            echo "build failed" && exit 1
+          fi
 #           $output = @()
 #           Foreach ($file in ($env:ALL_CHANGED_FILES).Split(" ")) {
 #             switch -Regex ($file) {
