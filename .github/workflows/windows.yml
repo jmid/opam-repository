@@ -213,29 +213,29 @@ jobs:
           for file in ${ALL_CHANGED_FILES}; do
             echo "file:" $file;
             pkg=$(echo $file | cut -d '\' -f 3);
-            printf "::group::Testing \e[1;34m$pkg\e[0m";
+            echo -e "::group::Testing \e[1;34m$pkg\e[0m";
             opam install --color=always --confirm-level=unsafe-yes "$pkg";
             exitcode=$?;
-            printf "::endgroup::";
+            echo "::endgroup::";
             case "$exitcode" in
               0)
-                printf "\e[1;32m$pkg installed succesfully\e[0m."
+                echo -e "\e[1;32m$pkg installed succesfully\e[0m."
                 ;;
               5)
-                printf "$pkg is not installable. \e[1;33mSkip\e[0m." # TODO: Remove when https://github.com/ocaml/opam/issues/6017 is fixed
+                echo -e "$pkg is not installable. \e[1;33mSkip\e[0m." # TODO: Remove when https://github.com/ocaml/opam/issues/6017 is fixed
                 ;;
               20)
-                printf "$pkg is not installable. \e[1;33mSkip\e[0m."
+                echo -e "$pkg is not installable. \e[1;33mSkip\e[0m."
                 ;;
               31)
-                printf "\e[1;31m$pkg failed to build\e[0m."
+                echo -e "\e[1;31m$pkg failed to build\e[0m."
                 failed=true
                 ;;
               *)
-                printf "Unexpected error $exitcode" && exit 1
+                echo "Unexpected error $exitcode" && exit 1
                 ;;
             esac
           done
           if [ "$failed" = true ] ; then
-            printf "build failed" && exit 1
+            echo "build failed" && exit 1
           fi
