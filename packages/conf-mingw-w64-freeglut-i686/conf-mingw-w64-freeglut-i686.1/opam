@@ -20,3 +20,4 @@ depexts: [
   ["mingw64-i686-freeglut"] {os = "win32" & os-distribution = "cygwin"}
   ["mingw-w64-i686-freeglut"] {os = "win32" & os-distribution = "msys2"}
 ]
+x-ci-accept-failures: [ "debian-11" ]
