@@ -201,7 +201,6 @@ jobs:
           files: packages/**
 
       - name: Install changed packages
-        if: steps.changed-files.outputs.any_changed == 'true'
         id: changed-packages
         if: github.event_name != 'push'
         env:
