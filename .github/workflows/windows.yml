@@ -13,7 +13,7 @@ jobs:
         os:
           - windows-latest
         windows_env:
-          - mingw
+          - cygwin
           - msys2
     runs-on: ${{ matrix.os }}
     steps:
@@ -57,11 +57,11 @@ jobs:
           D:\opam\bin\opam --version
           "D:\opam\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
-      - name: Init opam (MinGW)
-        if: steps.cache-opam.outputs.cache-hit != 'true' && matrix.windows_env == 'mingw'
+      - name: Init opam (Cygwin-MinGW)
+        if: steps.cache-opam.outputs.cache-hit != 'true' && matrix.windows_env == 'cygwin'
         run: opam init --yes --no-setup .
 
-      - name: Init opam (MSys2)
+      - name: Init opam (MSys2-MinGW)
         if: steps.cache-opam.outputs.cache-hit != 'true' && matrix.windows_env == 'msys2'
         run: |
           opam init --yes --no-setup --cygwin-local-install .
