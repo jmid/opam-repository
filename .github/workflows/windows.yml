@@ -44,7 +44,8 @@ jobs:
       - name: Install prerequisites for MSys2
         if: matrix.windows_env == 'msys2'
         run: |
-          C:\msys64\usr\bin\pacman.exe -Syu --noconfirm m4 make mingw-w64-i686-gcc mingw-w64-x86_64-gcc rsync unzip
+          C:\msys64\usr\bin\pacman.exe --noconfirm -Syuu  # Core update (in case any core packages are outdated)
+          C:\msys64\usr\bin\pacman.exe --noconfirm -Syuu m4 make mingw-w64-i686-gcc mingw-w64-x86_64-gcc rsync unzip
 
       - name: Install opam
         if: steps.cache-opam.outputs.cache-hit != 'true'
