@@ -20,7 +20,7 @@ install:[
     "install_dk"] { dedukti:installed }
 ]
 depends: [
-  "ocaml"       { >= "4.07.0" }
+  "ocaml"       { >= "4.08.0" }
   "ocamlfind"   { build }
   "ocamlbuild"  { build }
   "qcheck"      { with-test & >= "0.8" }
