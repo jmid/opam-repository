@@ -24,6 +24,7 @@ jobs:
         uses: actions/checkout@v5
         with:
           fetch-depth: 2
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Download install.ps1
         run: |
