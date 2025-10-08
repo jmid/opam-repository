@@ -8,6 +8,7 @@ env:
   OPAMROOT: D:\opamroot
   OPAMSOLVERTIMEOUT: 120
   MSYS: winsymlinks:native
+  OCAMLRUNPARAM: b
 jobs:
   build:
     strategy:
