@@ -41,6 +41,7 @@ depends: [
   "ocamlbuild"
 ]
 build: ["ocaml" "pkg/pkg.ml" "build" "--pkg-name" name "--dev-pkg" "%{dev}%"]
+flags: verbose
 dev-repo: "git+https://erratique.ch/repos/topkg.git"
 url {
   src: "https://erratique.ch/software/topkg/releases/topkg-1.1.0.tbz"
