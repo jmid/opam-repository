@@ -110,6 +110,7 @@ jobs:
           $pkgs = $env:ALL_CHANGED_PACKAGES | ConvertFrom-Json
           $failed = $false
           opam update
+          opam pin -y "https://github.com/dra27/ocamlfind.git#win-fixes"
           Foreach ($pkg in $pkgs) {
             Write-Host "::group::Testing `e[1;34m$pkg`e[0m"
             opam install --color=always --confirm-level=unsafe-yes "$pkg"
