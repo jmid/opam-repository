@@ -79,6 +79,7 @@ jobs:
           opam --version
           opam exec -- ocaml -version
           opam exec -- ocamlc -config
+          opam var
 
       - name: Get changed files
         id: changed-files
