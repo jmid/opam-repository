@@ -111,6 +111,7 @@ jobs:
           $pkgs = $env:ALL_CHANGED_PACKAGES | ConvertFrom-Json
           $failed = $false
           opam update
+          if ($LASTEXITCODE -ne 0) { Write-Host "`e[1;31mFailed to run 'opam update'`e[0m."; $failed = $true; }
           Foreach ($pkg in $pkgs) {
             Write-Host "::group::Testing `e[1;34m$pkg`e[0m"
             opam install --color=always --confirm-level=unsafe-yes "$pkg"
