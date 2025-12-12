@@ -41,7 +41,7 @@ jobs:
     name: "target/host: x86_64-w64-mingw32, build: ${{ matrix.build_env }}"
     strategy:
       fail-fast: false
-      matrix: ${{  { build_env: ['cygwin', 'msys2'], packages: fromJSON(needs.analyse.outputs.splits) } }}
+      matrix: ${{  {build_env: ['cygwin', 'msys2'], packages: fromJSON(needs.analyse.outputs.splits)} }}
     if: ${{ join(needs.analyse.outputs.splits) != '' }}
     runs-on: windows-latest
     needs: analyse
