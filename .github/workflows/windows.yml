@@ -43,7 +43,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix: ${{ fromJSON(needs.analyse.outputs.matrix) }}
-    if: ${{ fromJSON(needs.analyse.outputs.matrix).packages }}
+    if: ${{ needs.analyse.outputs.matrix.packages != '[]'}}
     runs-on: windows-latest
     needs: analyse
     steps:
