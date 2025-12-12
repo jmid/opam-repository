@@ -20,8 +20,8 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v47
 
-      - name: Compute build matrix
-        id: matrix
+      - name: Compute build splits
+        id: splits
         uses: actions/github-script@v8
         with:
           script: |
@@ -33,17 +33,16 @@ jobs:
               if (package)
                 packages.push(package[1]);
             }
-            const splits =
+            return
               Array.from({ length: Math.ceil(packages.length / 75) },
                          (_, i) => packages.slice(i * 75, i * 75 + 75).join(' '));
-            return {build_env: ['cygwin', 'msys2'], packages: splits};
 
   build:
     name: "target/host: x86_64-w64-mingw32, build: ${{ matrix.build_env }}"
     strategy:
       fail-fast: false
-      matrix: ${{ fromJSON(needs.analyse.outputs.matrix) }}
-    if: ${{ join(needs.analyse.outputs.matrix.packages) != '' }}
+      matrix: ${{  { build_env: ['cygwin', 'msys2'], packages: fromJSON(needs.analyse.outputs.splits) } }}
+    if: ${{ join(needs.analyse.outputs.splits) != '' }}
     runs-on: windows-latest
     needs: analyse
     steps:
