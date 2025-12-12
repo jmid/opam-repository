@@ -26,6 +26,7 @@ jobs:
 
       - name: Compute build matrix
         id: matrix
+        if: github.event_name != 'push'
         uses: actions/github-script@v8
         with:
           script: |
@@ -49,6 +50,7 @@ jobs:
       matrix: ${{ fromJSON(needs.analyse.outputs.matrix) }}
     runs-on: windows-latest
     needs: analyse
+    if: github.event_name != 'push'
     steps:
       - name: Checkout tree
         uses: actions/checkout@v6
