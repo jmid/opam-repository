@@ -11,7 +11,10 @@ build: [
 remove: [
   ["ocamlfind" "remove" "odbc"]
 ]
-depends: ["ocaml" "ocamlfind"]
+depends: [
+  "ocaml" {< "5.0.0"}
+  "ocamlfind"
+]
 depexts: [
   ["unixodbc-dev"] {os-family = "debian"}
   ["unixodbc"] {os = "macos" & os-distribution = "homebrew"}
