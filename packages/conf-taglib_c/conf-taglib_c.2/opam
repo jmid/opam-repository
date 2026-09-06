@@ -16,6 +16,7 @@ depexts: [
   ["taglib-dev" "zlib-dev"] {os-family = "alpine"}
   ["libtag-devel"] {os-family = "suse" | os-family = "opensuse"}
   ["taglib"] {os-family = "arch" | os = "freebsd" | os-distribution = "nixos"}
+  ["taglib-devel"] {os-family = "fedora" & os-version >= "44"}
   ["taglib"] {os = "macos" & os-distribution = "homebrew"}
   ["taglib"] {os = "macos" & os-distribution = "macports"}
 ]
