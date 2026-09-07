@@ -16,6 +16,7 @@ depends: [
   "fmt" {>= "0.8.9"}
   "duration" {>= "0.2.0"}
   "routes" {>= "2.0.0"}
+  "tyxml" {< "5.0"}
   "odoc" {with-doc}
 ]
 build: [
