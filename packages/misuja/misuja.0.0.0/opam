@@ -9,7 +9,7 @@ build: [make "lib"]
 install: [make "install"]
 remove: [make "uninstall"]
 depends: [
-  "ocaml" {>= "4.03.0"}
+  "ocaml" {>= "4.03.0" & < "5.0.0"}
   "ocamlfind" {build}
   "base-unix"
 ]
@@ -24,7 +24,7 @@ depexts: [
   ["jack"] {os-distribution = "homebrew" & os = "macos"}
 ]
 synopsis:
-  "A library to drive the MIDI system of the Jack Audio Connection Kit."
+  "A library to drive the MIDI system of the Jack Audio Connection Kit"
 description: """
 Misuja is a low-latency “MIDI communications thread” implemented in C
 which is manipulated with an OCaml API (communicating through
