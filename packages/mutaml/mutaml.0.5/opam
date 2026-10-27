@@ -32,7 +32,6 @@ depends: [
   "odoc" {with-doc}
 ]
 dev-repo: "git+https://github.com/jmid/mutaml.git"
-x-maintenance-intent: ["(latest)"]
 build: [
   ["dune" "subst"] {dev}
   [
