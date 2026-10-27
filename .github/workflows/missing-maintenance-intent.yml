@@ -23,6 +23,7 @@ jobs:
           ADDED_FILES: ${{ steps.changed-files.outputs.added_files }}
         run: |
           missing=false
+          echo ${ADDED_FILES}
           for file in ${ADDED_FILES}; do
             echo $file
             opam show -f 'x-maintenance-intent:' $file
