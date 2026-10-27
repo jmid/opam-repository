@@ -24,7 +24,9 @@ jobs:
         run: |
           missing=false
           for file in ${ADDED_FILES}; do
-            if opam show -f 'x-maintenance-intent:' $file ; then
+            opam show -f 'x-maintenance-intent:' $file
+            retVal=$?
+            if [ retVal -ne 0 ]; then
               echo $file "is missing an x-maintenance-intent: entry"
               missing=true
             fi
