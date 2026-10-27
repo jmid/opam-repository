@@ -22,11 +22,11 @@ jobs:
         env:
           ADDED_FILES: ${{ steps.changed-files.outputs.added_files }}
         run: |
-          missing = false
+          missing=false
           for file in ${ADDED_FILES}; do
             if [ opam show -f 'x-maintenance-intent:' $file ] ; then
               echo $file "is missing an x-maintenance-intent: entry"
-              missing = true
+              missing=true
             fi
           done
           if [ $missing = true ] ; then
