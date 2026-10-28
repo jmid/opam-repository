@@ -20,11 +20,11 @@ jobs:
 
       - name: Check for missing x-maintenance-intent
         env:
-          CHANGED_FILES: ${{ steps.changed-files.outputs.added_files }}
+          ADDED_FILES: ${{ steps.changed-files.outputs.added_files }}
         run: |
           missing=false
-          echo ${CHANGED_FILES}
-          for file in ${CHANGED_FILES}; do
+          echo ${ADDED_FILES}
+          for file in ${ADDED_FILES}; do
             echo $file
             opam show -f 'x-maintenance-intent:' $file
             retVal=$?
